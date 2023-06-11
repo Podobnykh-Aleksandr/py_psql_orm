@@ -43,4 +43,13 @@ else:
             Publisher.name.like(f'%{publ_name}%')).all():
         print(c)
 
+        
+author_id, author_name = input('Введите идентификатор или имя автора: ')
+res = session.query(Book.title, Shop.name, Sale.price, Sale.count, Sale.date_sale).\
+      join(Publisher).join(Stock).join(Sale).join(Shop).\
+      filter(or_(Publisher.id==author_id, Publisher.name==author_name))
+
+for book, shop, price, count, date in res:
+    print(f'{book: <40} | {shop: <10} | {price*count: <8} | {date.strftime('%d-%m-%Y')}')
+
 session.close()
