@@ -1,6 +1,7 @@
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 import json
+from functools import or_
 
 from models import create_tables, Publisher, Sale, Book, Stock, Shop
 
