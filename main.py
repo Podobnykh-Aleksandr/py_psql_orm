@@ -1,7 +1,7 @@
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 import json
-from functools import or_
+from sqlalchemy import or_
 
 from models import create_tables, Publisher, Sale, Book, Stock, Shop
 
@@ -44,7 +44,9 @@ else:
             Publisher.name.like(f'%{publ_name}%')).all():
         print(c)
 
-        
+
+author_id = 0
+author_name = 0
 user_input = input('Введите идентификатор или имя автора: ')
 if user_input.isdigit():
     author_id = int(user_input)
